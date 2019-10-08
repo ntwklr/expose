@@ -11,6 +11,12 @@ class Manager
     private $data = null;
 
     /**
+     * Hash of the given data
+     * @var string
+     */
+    private $hash = null;
+
+    /**
      * Set of filters to execute
      * @var \Expose\FilterCollection
      */
@@ -110,7 +116,9 @@ class Manager
      */
     public function run(array $data, $queueRequests = false, $notify = false)
     {
-        $this->getLogger()->info('Executing on data '.md5(print_r($data, true)));
+        $this->setHash(\hash('sha256', print_r($data, true)));
+
+        $this->getLogger()->debug("Executing IDS-Detection on: {$this->hash}");
 
         if ($queueRequests === true) {
             $this->logRequest($data);
@@ -246,8 +254,8 @@ class Manager
             $filters->next();
             if ($filter->execute($value) === true) {
                 $filterMatches[] = $filter;
-                $this->getLogger()->info(
-                    'Match found on Filter ID '.$filter->getId(),
+                $this->getLogger()->debug(
+                    "Match found for {$this->hash} on Filter ID {$filter->getId()}",
                     array($filter->toArray())
                 );
 
@@ -412,6 +420,26 @@ class Manager
     public function getData()
     {
         return $this->data;
+    }
+
+    /**
+     * Set the source Hash of the given data
+     *
+     * @param string $hash Hash of the given data
+     */
+    public function setHash(string $hash)
+    {
+        $this->hash = $hash;
+    }
+
+    /**
+     * Get the current Hash of the given data
+     *
+     * @return string Hash of the given data
+     */
+    public function getHash()
+    {
+        return $this->hash;
     }
 
     /**
