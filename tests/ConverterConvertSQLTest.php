@@ -2,7 +2,7 @@
 
 namespace Expose\Converter;
 
-class ConvertSQLTest extends \PHPUnit_Framework_TestCase
+class ConvertSQLTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Expose\Notify;
 
-class EmailTest extends \PHPUnit_Framework_TestCase
+class EmailTest extends \PHPUnit\Framework\TestCase
 {
 	private $email = null;
 

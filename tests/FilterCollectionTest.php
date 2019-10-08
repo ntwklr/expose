@@ -2,7 +2,7 @@
 
 namespace Expose;
 
-class FilterConnectionTest extends \PHPUnit_Framework_TestCase
+class FilterConnectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Expose\FilterCollection

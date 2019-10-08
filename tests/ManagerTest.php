@@ -5,7 +5,7 @@ namespace Expose;
 require_once 'MockLogger.php';
 require_once 'MockQueue.php';
 
-class ManagerTest extends \PHPUnit_Framework_TestCase
+class ManagerTest extends \PHPUnit\Framework\TestCase
 {
     private $manager = null;
     private $sampleFilters = array(

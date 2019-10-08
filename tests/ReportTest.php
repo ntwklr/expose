@@ -2,7 +2,7 @@
 
 namespace Expose;
 
-class ReportTest extends \PHPUnit_Framework_TestCase
+class ReportTest extends \PHPUnit\Framework\TestCase
 {
     private $report = null;
 
